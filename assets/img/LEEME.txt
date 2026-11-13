@@ -1,0 +1,37 @@
+CLEAN CLEAN SOLUTION — IMÁGENES DEL SITIO
+==========================================
+
+YA INCLUIDAS (generadas a partir del logotipo oficial)
+------------------------------------------------------
+
+  logo.png              Logotipo completo (512 x 512 px, fondo transparente).
+                        Se muestra en el pie de página y se usa en los datos
+                        para Google.
+
+  logo-icono.png        Solo el ícono (casa y estrellas). Se muestra en la
+                        barra de navegación junto al nombre en texto.
+
+  favicon.png           Ícono de la pestaña del navegador.
+
+  apple-touch-icon.png  Ícono al guardar el sitio en la pantalla de inicio
+                        del celular.
+
+
+PENDIENTES (sube estos archivos con estos nombres exactos, en minúsculas)
+-------------------------------------------------------------------------
+
+  hero-servicio.jpg     Foto principal del servicio. Recomendado 1200 x 1380 px
+                        (vertical). También se usa como imagen de vista previa
+                        al compartir el enlace en WhatsApp y Facebook.
+
+  antes-1.jpg           Foto del mueble ANTES del lavado. 1200 x 900 px.
+
+  despues-1.jpg         Foto del mismo mueble DESPUÉS del lavado. 1200 x 900 px.
+                        Debe tener el mismo encuadre y tamaño que antes-1.jpg
+                        para que el comparador coincida.
+
+Mientras alguna de estas fotos no exista, el sitio muestra en su lugar una
+ilustración de respaldo, así que nunca se verá una imagen rota.
+
+Consejo: comprime las fotos antes de subirlas (por ejemplo en squoosh.app)
+para que cada una pese menos de 300 KB y el sitio cargue rápido.

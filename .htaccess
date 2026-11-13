@@ -1,0 +1,141 @@
+# ==========================================================================
+# Clean Clean Solution — .htaccess
+# GoDaddy Web Hosting (cPanel / Apache) · subir a la carpeta public_html
+#
+# IMPORTANTE: la redirección a HTTPS necesita que el certificado SSL del
+# dominio ya esté activo en cPanel. Si aún no lo está, comenta el bloque
+# "1) Forzar HTTPS" hasta activarlo.
+# ==========================================================================
+
+# --------------------------------------------------------------------------
+# Ajustes generales
+# --------------------------------------------------------------------------
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+  AddCharset UTF-8 .html .css .js .json .xml .svg .txt
+  AddType image/svg+xml            .svg .svgz
+  AddType image/webp               .webp
+  AddType image/avif               .avif
+  AddType font/woff2               .woff2
+  AddType font/woff                .woff
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Redirecciones
+# --------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # No interferir con la validación/renovación del certificado SSL
+  RewriteRule ^\.well-known/ - [L]
+
+  # 1) Forzar HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2) Unificar el dominio con www
+  RewriteCond %{HTTP_HOST} ^cleancleansolution\.com\.mx$ [NC]
+  RewriteRule ^ https://www.cleancleansolution.com.mx%{REQUEST_URI} [L,R=301]
+
+  # 3) Evitar contenido duplicado: /index.html -> /
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [L,R=301]
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Compresión GZIP (y Brotli si el servidor lo ofrece)
+# --------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/ld+json application/manifest+json
+  AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml image/x-icon
+  AddOutputFilterByType DEFLATE font/ttf font/otf application/vnd.ms-fontobject
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS text/javascript application/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/json application/ld+json application/xml
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Caché del navegador para archivos estáticos
+#
+# - HTML: siempre se revalida, así los cambios de texto se ven al instante.
+# - CSS y JS: 1 mes. Al editarlos, sube el número de versión en index.html
+#   (styles.css?v=1.0.1, script.js?v=1.0.1) para que todos reciban el cambio.
+# - Imágenes: 1 mes. Si reemplazas una foto y quieres que se actualice de
+#   inmediato para quien ya visitó el sitio, súbela con otro nombre.
+# --------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                              "access plus 1 month"
+
+  ExpiresByType text/html                     "access plus 0 seconds"
+  ExpiresByType application/xml               "access plus 1 hour"
+  ExpiresByType text/xml                      "access plus 1 hour"
+  ExpiresByType text/plain                    "access plus 1 hour"
+  ExpiresByType application/json              "access plus 1 hour"
+
+  ExpiresByType text/css                      "access plus 1 month"
+  ExpiresByType text/javascript               "access plus 1 month"
+  ExpiresByType application/javascript        "access plus 1 month"
+  ExpiresByType application/x-javascript      "access plus 1 month"
+
+  ExpiresByType image/jpeg                    "access plus 1 month"
+  ExpiresByType image/png                     "access plus 1 month"
+  ExpiresByType image/webp                    "access plus 1 month"
+  ExpiresByType image/avif                    "access plus 1 month"
+  ExpiresByType image/gif                     "access plus 1 month"
+  ExpiresByType image/svg+xml                 "access plus 1 month"
+  ExpiresByType image/x-icon                  "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon      "access plus 1 year"
+
+  ExpiresByType font/woff2                    "access plus 1 year"
+  ExpiresByType font/woff                     "access plus 1 year"
+  ExpiresByType font/ttf                      "access plus 1 year"
+  ExpiresByType font/otf                      "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # El HTML nunca se sirve desde caché sin revalidar
+  <FilesMatch "\.html?$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Las versiones comprimidas y sin comprimir se guardan por separado
+  <FilesMatch "\.(html?|css|js|json|xml|svg|txt)$">
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+
+  # Cabeceras de seguridad
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header unset X-Powered-By
+
+  # HSTS: actívalo (quita el #) solo después de confirmar que el sitio
+  # funciona bien con HTTPS, porque obliga a los navegadores a usarlo siempre.
+  # Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+</IfModule>
+
+# Los ETag no aportan con las reglas de caché anteriores
+FileETag None
+
+# --------------------------------------------------------------------------
+# Protección de archivos sensibles
+# --------------------------------------------------------------------------
+<IfModule mod_authz_core.c>
+  <FilesMatch "(^\.|\.(bak|log|sql|ini|sh|md)$)">
+    Require all denied
+  </FilesMatch>
+</IfModule>

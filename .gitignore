@@ -1,0 +1,5 @@
+# Archivos locales que no forman parte del sitio
+.claude/
+Thumbs.db
+desktop.ini
+.DS_Store
