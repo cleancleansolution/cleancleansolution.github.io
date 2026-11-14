@@ -11,7 +11,8 @@ YA INCLUIDAS (generadas a partir del logotipo oficial)
   logo-icono.png        Solo el ícono (casa y estrellas). Se muestra en la
                         barra de navegación junto al nombre en texto.
 
-  favicon.png           Ícono de la pestaña del navegador.
+  favicon.png           Ícono de la pestaña del navegador (192 x 192 px, fondo
+                        transparente).
 
   apple-touch-icon.png  Ícono al guardar el sitio en la pantalla de inicio
                         del celular.
