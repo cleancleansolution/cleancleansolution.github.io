@@ -886,7 +886,8 @@ strong { font-weight: 600; }
 .compare {
   --pos: 50%;
   position: relative;
-  aspect-ratio: 4 / 3;
+  /* Mismo formato que las fotos (1200 x 628) para mostrarlas completas */
+  aspect-ratio: 1200 / 628;
   overflow: hidden;
   isolation: isolate;
   border-radius: 24px;

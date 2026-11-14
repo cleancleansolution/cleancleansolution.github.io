@@ -21,18 +21,16 @@ YA INCLUIDAS (generadas a partir del logotipo oficial)
                         compartir el enlace en WhatsApp y Facebook. Si la
                         cambias, conserva ese mismo formato vertical.
 
+  antes-1.jpg           Foto del mueble ANTES del lavado (1200 x 628 px).
 
-PENDIENTES (sube estos archivos con estos nombres exactos, en minúsculas)
--------------------------------------------------------------------------
+  despues-1.jpg         Foto del mismo mueble DESPUÉS del lavado (1200 x 628 px).
+                        Las dos deben tener el mismo encuadre y tamaño para
+                        que el comparador coincida.
 
-  antes-1.jpg           Foto del mueble ANTES del lavado. 1200 x 900 px.
-
-  despues-1.jpg         Foto del mismo mueble DESPUÉS del lavado. 1200 x 900 px.
-                        Debe tener el mismo encuadre y tamaño que antes-1.jpg
-                        para que el comparador coincida.
-
-Mientras alguna de estas fotos no exista, el sitio muestra en su lugar una
+Si algún día falta alguna de estas fotos, el sitio muestra en su lugar una
 ilustración de respaldo, así que nunca se verá una imagen rota.
 
-Consejo: comprime las fotos antes de subirlas (por ejemplo en squoosh.app)
+Si cambias una foto, conserva el mismo nombre de archivo y el mismo formato;
+si el formato es distinto, hay que ajustar también el recuadro en la hoja de
+estilos. Comprime las fotos antes de subirlas (por ejemplo en squoosh.app)
 para que cada una pese menos de 300 KB y el sitio cargue rápido.
