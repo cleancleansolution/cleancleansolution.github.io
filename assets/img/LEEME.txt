@@ -16,13 +16,14 @@ YA INCLUIDAS (generadas a partir del logotipo oficial)
   apple-touch-icon.png  Ícono al guardar el sitio en la pantalla de inicio
                         del celular.
 
+  hero-servicio.jpg     Foto principal del sitio (1080 x 1350 px, vertical 4:5).
+                        También se usa como imagen de vista previa al
+                        compartir el enlace en WhatsApp y Facebook. Si la
+                        cambias, conserva ese mismo formato vertical.
+
 
 PENDIENTES (sube estos archivos con estos nombres exactos, en minúsculas)
 -------------------------------------------------------------------------
-
-  hero-servicio.jpg     Foto principal del servicio. Recomendado 1200 x 1380 px
-                        (vertical). También se usa como imagen de vista previa
-                        al compartir el enlace en WhatsApp y Facebook.
 
   antes-1.jpg           Foto del mueble ANTES del lavado. 1200 x 900 px.
 
