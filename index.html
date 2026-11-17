@@ -47,7 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
   <!-- Estilos (cambia el número de versión cada vez que edites el archivo) -->
-  <link rel="stylesheet" href="css/styles.css?v=1.0.2">
+  <link rel="stylesheet" href="css/styles.css?v=1.0.3">
 
   <!-- Datos estructurados: negocio local -->
   <script type="application/ld+json">
@@ -81,6 +81,10 @@
         "name": "San Luis Potosí"
       }
     },
+    "sameAs": [
+      "https://www.instagram.com/cleancleansolution",
+      "https://www.facebook.com/profile.php?id=100063608242219"
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+52 444 550 9181",
@@ -327,6 +331,14 @@
     <symbol id="i-badge" viewBox="0 0 24 24">
       <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
       <path d="m9 12 2 2 4-4"/>
+    </symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <path d="M17.5 6.5h.01"/>
+    </symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
     </symbol>
   </svg>
 
@@ -988,6 +1000,22 @@
           </a>
           <p class="footer__motto">Un servicio profesional y garantizado.</p>
           <p>Lavamos, desinfectamos y eliminamos malos olores de salas, colchones y tapicería, directo en tu hogar.</p>
+
+          <!-- Redes sociales -->
+          <ul class="social" aria-label="Redes sociales">
+            <li>
+              <a class="social__link" href="https://www.instagram.com/cleancleansolution" target="_blank" rel="noopener noreferrer"
+                 aria-label="Instagram de Clean Clean Solution">
+                <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social__link" href="https://www.facebook.com/profile.php?id=100063608242219" target="_blank" rel="noopener noreferrer"
+                 aria-label="Facebook de Clean Clean Solution">
+                <svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg>
+              </a>
+            </li>
+          </ul>
         </div>
 
         <nav aria-label="Navegación del pie de página">
