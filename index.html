@@ -136,7 +136,7 @@
           "itemOffered": {
             "@type": "Service",
             "name": "Lavado de Interiores de Autos",
-            "description": "Lavado profundo de interiores de autos sedán, SUV y camioneta: asientos, vestiduras de tela o piel, cielo, tapetes y alfombra.",
+            "description": "Lavado profundo a domicilio de interiores de autos sedán, hatchback, SUV, minivan y pickup: asientos, vestiduras de tela o piel, cielo, tapetes y alfombra.",
             "areaServed": "San Luis Potosí, S.L.P."
           }
         }
@@ -581,7 +581,7 @@
           <article class="card" data-reveal data-reveal-delay="300">
             <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></span>
             <h3>Lavado de Interiores de Autos</h3>
-            <p>Sedán, SUV y camioneta, con vestiduras de tela o piel. Un paquete completo que deja el interior de tu auto limpio, desinfectado y sin malos olores.</p>
+            <p>Sedán, hatchback, SUV, minivan o pickup, con vestiduras de tela o piel. Vamos a tu domicilio y dejamos el interior limpio, desinfectado y sin malos olores.</p>
             <ul class="checklist">
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Asientos a profundidad</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Vestiduras de tela o piel</li>
@@ -589,7 +589,7 @@
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tapetes y alfombra</li>
             </ul>
             <a class="btn btn--primary btn--block card__cta" href="https://wa.me/524445509181" target="_blank" rel="noopener noreferrer"
-               data-wa="Hola Clean Clean Solution, me interesa cotizar el servicio de *Lavado de Interiores de Autos* en San Luis Potosí.">
+               data-wa="Hola Clean Clean Solution, me interesa cotizar el servicio de *Lavado de Interiores de Autos* a domicilio en San Luis Potosí.">
               <svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>
               Cotizar este servicio
             </a>
@@ -863,7 +863,7 @@
             <!-- Interiores de autos: el tipo de vestidura elegido se agrega a cada vehículo del mensaje -->
             <fieldset class="q-group" data-variant>
               <legend><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg>Interiores de autos</legend>
-              <p class="q-group__note">Paquete completo: asientos, vestiduras, cielo, tapetes y alfombra a profundidad.</p>
+              <p class="q-group__note">Paquete completo a domicilio: asientos, vestiduras, cielo, tapetes y alfombra a profundidad. ¿Tu vehículo es de otro tipo? Dínoslo en los comentarios.</p>
 
               <div class="segmented" role="radiogroup" aria-label="Tipo de vestiduras">
                 <span class="segmented__label">Vestiduras:</span>
@@ -878,10 +878,10 @@
               </div>
 
               <ul class="q-list">
-                <li class="q-item" data-item="Interior de auto sedán">
+                <li class="q-item" data-item="Interior de auto sedán o hatchback">
                   <div class="q-item__info">
-                    <label class="q-item__name" for="q-auto-sedan">Sedán</label>
-                    <span class="q-item__hint">Auto compacto o sedán</span>
+                    <label class="q-item__name" for="q-auto-sedan">Sedán o hatchback</label>
+                    <span class="q-item__hint">Auto compacto o mediano</span>
                   </div>
                   <div class="stepper">
                     <button class="stepper__btn" type="button" data-step="-1" aria-label="Quitar un auto sedán">&minus;</button>
@@ -889,9 +889,9 @@
                     <button class="stepper__btn" type="button" data-step="1" aria-label="Agregar un auto sedán">+</button>
                   </div>
                 </li>
-                <li class="q-item" data-item="Interior de SUV">
+                <li class="q-item" data-item="Interior de SUV o crossover">
                   <div class="q-item__info">
-                    <label class="q-item__name" for="q-auto-suv">SUV</label>
+                    <label class="q-item__name" for="q-auto-suv">SUV o crossover</label>
                     <span class="q-item__hint">2 o 3 filas de asientos</span>
                   </div>
                   <div class="stepper">
@@ -900,15 +900,26 @@
                     <button class="stepper__btn" type="button" data-step="1" aria-label="Agregar una SUV">+</button>
                   </div>
                 </li>
-                <li class="q-item" data-item="Interior de camioneta">
+                <li class="q-item" data-item="Interior de minivan o van">
                   <div class="q-item__info">
-                    <label class="q-item__name" for="q-auto-camioneta">Camioneta</label>
-                    <span class="q-item__hint">Pickup o van</span>
+                    <label class="q-item__name" for="q-auto-minivan">Minivan o van</label>
+                    <span class="q-item__hint">Familiar o de pasajeros</span>
                   </div>
                   <div class="stepper">
-                    <button class="stepper__btn" type="button" data-step="-1" aria-label="Quitar una camioneta">&minus;</button>
-                    <input class="stepper__input" id="q-auto-camioneta" type="number" inputmode="numeric" min="0" max="20" step="1" value="0">
-                    <button class="stepper__btn" type="button" data-step="1" aria-label="Agregar una camioneta">+</button>
+                    <button class="stepper__btn" type="button" data-step="-1" aria-label="Quitar una minivan o van">&minus;</button>
+                    <input class="stepper__input" id="q-auto-minivan" type="number" inputmode="numeric" min="0" max="20" step="1" value="0">
+                    <button class="stepper__btn" type="button" data-step="1" aria-label="Agregar una minivan o van">+</button>
+                  </div>
+                </li>
+                <li class="q-item" data-item="Interior de pickup">
+                  <div class="q-item__info">
+                    <label class="q-item__name" for="q-auto-pickup">Pickup</label>
+                    <span class="q-item__hint">Cabina sencilla o doble</span>
+                  </div>
+                  <div class="stepper">
+                    <button class="stepper__btn" type="button" data-step="-1" aria-label="Quitar una pickup">&minus;</button>
+                    <input class="stepper__input" id="q-auto-pickup" type="number" inputmode="numeric" min="0" max="20" step="1" value="0">
+                    <button class="stepper__btn" type="button" data-step="1" aria-label="Agregar una pickup">+</button>
                   </div>
                 </li>
               </ul>
