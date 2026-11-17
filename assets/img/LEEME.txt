@@ -8,7 +8,10 @@ YA INCLUIDAS (generadas a partir del logotipo oficial)
                         Se muestra en el pie de página y se usa en los datos
                         para Google.
 
-  logo-icono.png        Solo el ícono (casa y estrellas). Se muestra en la
+  logo-blanco.png       Logotipo en blanco con fondo transparente. Se muestra
+                        en el pie de página, sobre el fondo oscuro.
+
+  logo-icono.png       Solo el ícono (casa y estrellas). Se muestra en la
                         barra de navegación junto al nombre en texto.
 
   favicon.png           Ícono de la pestaña del navegador (192 x 192 px, fondo

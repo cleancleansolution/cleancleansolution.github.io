@@ -334,7 +334,13 @@
       quoteItems.forEach(function (item) {
         var quantity = readQuantity(item.querySelector('.stepper__input'));
         if (quantity > 0) {
-          selection.push({ name: item.getAttribute('data-item'), quantity: quantity });
+          var name = item.getAttribute('data-item');
+          /* Grupos con variante (por ejemplo autos: vestiduras de tela o piel):
+             la opción marcada se agrega al nombre de cada artículo del grupo. */
+          var variantGroup = item.closest('[data-variant]');
+          var variant = variantGroup && variantGroup.querySelector('input[type="radio"]:checked');
+          if (variant) { name += ' (' + variant.value + ')'; }
+          selection.push({ name: name, quantity: quantity });
         }
       });
       return selection;
@@ -344,7 +350,7 @@
       var lines = [
         'Hola Clean Clean Solution, me gustaría solicitar una cotización de lavado a domicilio en San Luis Potosí.',
         '',
-        '*Muebles a limpiar:*'
+        '*Servicios a cotizar:*'
       ];
       selection.forEach(function (entry) {
         lines.push('• ' + entry.quantity + ' × ' + entry.name);
@@ -419,6 +425,8 @@
       if (event.target.classList && event.target.classList.contains('stepper__input')) {
         event.target.value = String(readQuantity(event.target));
         renderQuote();
+      } else if (event.target.type === 'radio') {
+        renderQuote();
       }
     });
 
@@ -428,7 +436,7 @@
       if (selection.length) { return; }
       event.preventDefault();
       if (quoteError) {
-        quoteError.textContent = 'Agrega al menos un mueble para armar tu cotización.';
+        quoteError.textContent = 'Agrega al menos un mueble o vehículo para armar tu cotización.';
       }
       var firstInput = quoteForm.querySelector('.stepper__btn[data-step="1"]');
       if (firstInput) { firstInput.focus(); }
@@ -443,6 +451,9 @@
       quoteReset.addEventListener('click', function () {
         quoteItems.forEach(function (item) {
           item.querySelector('.stepper__input').value = '0';
+        });
+        toArray(quoteForm.querySelectorAll('[data-variant] input[type="radio"]')).forEach(function (radio) {
+          radio.checked = radio.defaultChecked;
         });
         if (quoteError) { quoteError.textContent = ''; }
         renderQuote();
