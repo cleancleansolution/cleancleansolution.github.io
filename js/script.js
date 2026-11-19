@@ -491,4 +491,100 @@
      ------------------------------------------------------------------------ */
   var yearNode = document.getElementById('year');
   if (yearNode) { yearNode.textContent = String(new Date().getFullYear()); }
+
+  /* ------------------------------------------------------------------------
+     10. Carrusel del hero
+     Cambia de foto cada 15 segundos (data-interval). Se detiene al pasar el
+     mouse o al enfocar un control, cuando la pestaña no está visible o si la
+     persona lo pausa. Con "reducir movimiento" activado no avanza solo.
+     ------------------------------------------------------------------------ */
+  toArray(document.querySelectorAll('[data-slider]')).forEach(function (slider) {
+    var slides = toArray(slider.querySelectorAll('.slide'));
+    var dots = toArray(slider.querySelectorAll('.slider__dot'));
+    var pauseButton = slider.querySelector('.slider__pause');
+    var interval = parseInt(slider.getAttribute('data-interval'), 10) || 15000;
+    var current = 0;
+    var timer = null;
+    var userPaused = prefersReducedMotion;
+    var hovering = false;
+    var focusing = false;
+
+    if (slides.length < 2) {
+      var controls = slider.querySelector('.slider__controls');
+      if (controls) { controls.hidden = true; }
+      return;
+    }
+
+    function isRunning() {
+      return !userPaused && !hovering && !focusing && !document.hidden;
+    }
+
+    function stop() {
+      if (timer) { window.clearTimeout(timer); timer = null; }
+    }
+
+    function schedule() {
+      stop();
+      if (isRunning()) {
+        timer = window.setTimeout(function () { show(current + 1, false); }, interval);
+      }
+    }
+
+    function show(index, fromUser) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === current);
+        slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === current);
+        if (i === current) { dot.setAttribute('aria-current', 'true'); } else { dot.removeAttribute('aria-current'); }
+      });
+      schedule();
+    }
+
+    function setPaused(paused) {
+      userPaused = paused;
+      slider.classList.toggle('is-paused', paused);
+      if (pauseButton) {
+        pauseButton.setAttribute('aria-label', paused ? 'Reanudar presentación' : 'Pausar presentación');
+      }
+      slider.setAttribute('aria-live', paused ? 'polite' : 'off');
+      schedule();
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { show(i, true); });
+    });
+
+    if (pauseButton) {
+      pauseButton.addEventListener('click', function () { setPaused(!userPaused); });
+    }
+
+    slider.addEventListener('mouseenter', function () { hovering = true; stop(); });
+    slider.addEventListener('mouseleave', function () { hovering = false; schedule(); });
+    slider.addEventListener('focusin', function () { focusing = true; stop(); });
+    slider.addEventListener('focusout', function () { focusing = false; schedule(); });
+    document.addEventListener('visibilitychange', schedule);
+
+    /* Deslizar con el dedo para cambiar de foto */
+    var startX = null;
+    slider.addEventListener('pointerdown', function (event) {
+      if (event.pointerType === 'mouse' || event.target.closest('.slider__controls')) { return; }
+      startX = event.clientX;
+    });
+    slider.addEventListener('pointerup', function (event) {
+      if (startX === null) { return; }
+      var delta = event.clientX - startX;
+      startX = null;
+      if (Math.abs(delta) > 40) { show(current + (delta < 0 ? 1 : -1), true); }
+    });
+    slider.addEventListener('pointercancel', function () { startX = null; });
+
+    slides.forEach(function (slide, i) {
+      slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+    });
+    setPaused(userPaused);
+    show(0, false);
+  });
 })();

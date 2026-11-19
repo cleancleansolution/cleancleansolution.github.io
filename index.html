@@ -47,7 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
   <!-- Estilos (cambia el número de versión cada vez que edites el archivo) -->
-  <link rel="stylesheet" href="css/styles.css?v=1.0.4">
+  <link rel="stylesheet" href="css/styles.css?v=1.0.5">
 
   <!-- Datos estructurados: negocio local -->
   <script type="application/ld+json">
@@ -356,6 +356,12 @@
       <path d="M9 17h6"/>
       <circle cx="17" cy="17" r="2"/>
     </symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24">
+      <path d="M8 5v14"/><path d="M16 5v14"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path d="m7 4 13 8-13 8z"/>
+    </symbol>
     <symbol id="i-tiktok" viewBox="0 0 24 24">
       <path d="M9 12a4 4 0 1 0 4 4V3a5 5 0 0 0 5 5"/>
     </symbol>
@@ -457,15 +463,42 @@
         </div>
 
         <figure class="hero__media">
-          <div class="hero__frame">
-            <!-- Ilustración de respaldo: queda oculta detrás de la foto real -->
+          <div class="hero__frame hero-slider" data-slider data-interval="15000"
+               role="group" aria-roledescription="carrusel" aria-label="Resultados de lavado de Clean Clean Solution">
+            <!-- Ilustración de respaldo: queda oculta detrás de las fotos reales -->
             <div class="hero__art" aria-hidden="true">
               <svg viewBox="0 0 400 300"><use href="#art-sofa"/></svg>
             </div>
-            <!-- FOTO HERO: assets/img/hero-servicio.jpg (vertical 4:5, 1080 x 1350 px) -->
-            <img src="assets/img/hero-servicio.jpg" width="1080" height="1350"
-                 alt="Sofá de piel con una franja limpia bajo la boquilla de lavado: servicio profesional y garantizado de Clean Clean Solution"
-                 fetchpriority="high" decoding="async" data-fallback>
+
+            <!-- DIAPOSITIVAS (vertical 4:5, 1080 x 1350 px). Para agregar otra, duplica un bloque
+                 .slide con su foto y suma un punto en .slider__dots. Cambian cada 15 segundos. -->
+            <div class="slide is-active" role="group" aria-roledescription="diapositiva" aria-label="1 de 3">
+              <img src="assets/img/hero-servicio.jpg" width="1080" height="1350"
+                   alt="Sofá de piel con una franja recién lavada bajo la boquilla de aspirado de Clean Clean Solution"
+                   fetchpriority="high" decoding="async" data-fallback>
+            </div>
+            <div class="slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 3">
+              <img src="assets/img/hero-2.jpg" width="1080" height="1350"
+                   alt="Sillón de tela gris con una franja limpia donde pasó la boquilla de lavado, junto a la zona sin lavar"
+                   loading="lazy" decoding="async">
+            </div>
+            <div class="slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 3">
+              <img src="assets/img/hero-3.jpg" width="1080" height="1350"
+                   alt="Colchón con una franja limpia y blanca que contrasta con las manchas del resto de la superficie"
+                   loading="lazy" decoding="async">
+            </div>
+
+            <div class="slider__controls">
+              <div class="slider__dots" role="group" aria-label="Elegir foto">
+                <button class="slider__dot is-active" type="button" aria-label="Ver foto 1 de 3" aria-current="true"></button>
+                <button class="slider__dot" type="button" aria-label="Ver foto 2 de 3"></button>
+                <button class="slider__dot" type="button" aria-label="Ver foto 3 de 3"></button>
+              </div>
+              <button class="slider__pause" type="button" aria-label="Pausar presentación">
+                <svg class="icon slider__icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="icon slider__icon-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
           </div>
 
           <figcaption class="float-card float-card--a">
@@ -1188,6 +1221,6 @@
   </a>
 
   <!-- Scripts (cambia el número de versión cada vez que edites el archivo) -->
-  <script src="js/script.js?v=1.0.1" defer></script>
+  <script src="js/script.js?v=1.0.2" defer></script>
 </body>
 </html>
